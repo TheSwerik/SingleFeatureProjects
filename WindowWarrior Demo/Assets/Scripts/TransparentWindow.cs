@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TransparentWindow : MonoBehaviour
 {
@@ -10,13 +11,14 @@ public class TransparentWindow : MonoBehaviour
     private const uint LwaColorkey = 0x00000001;
     private static readonly IntPtr HwndTopmost = new IntPtr(-1);
 
-    [SerializeField] private Controls controls;
-    [SerializeField] private Camera textureCamera;
     [SerializeField] private bool debug;
+    private EventSystem _eventSystem;
     private IntPtr _hWnd;
 
     private void Start()
     {
+        _eventSystem = EventSystem.current;
+
         _hWnd = GetActiveWindow();
         var margins = new Margins {CxLeftWidth = -1};
         DwmExtendFrameIntoClientArea(_hWnd, ref margins);
@@ -36,7 +38,7 @@ public class TransparentWindow : MonoBehaviour
     {
         #if !UNITY_EDITOR
         if (debug) return;
-        if (controls != null) SetClickthrough(Physics2D.OverlapPoint(textureCamera.ScreenToWorldPoint(controls.GetMousePosition())) == null);
+        SetClickthrough(!eventSystem.IsPointerOverGameObject());
         #endif
     }
 

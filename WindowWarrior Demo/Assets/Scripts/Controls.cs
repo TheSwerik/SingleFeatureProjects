@@ -14,7 +14,6 @@ public class Controls : MonoBehaviour
     #region Public Methods
 
     public Vector2 GetMoveDirection() { return _inputActions.Player.Move.ReadValue<Vector2>(); }
-    public Vector2 GetMousePosition() { return _inputActions.UI.Point.ReadValue<Vector2>(); }
 
     #endregion
 }
