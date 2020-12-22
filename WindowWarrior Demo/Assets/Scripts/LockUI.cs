@@ -1,6 +1,7 @@
 using UnityEngine;
 
 [ExecuteInEditMode]
+[RequireComponent(typeof(RectTransform))]
 public class LockUI : MonoBehaviour
 {
     [SerializeField] private bool active = true;
