@@ -17,14 +17,15 @@ public class LockUI : MonoBehaviour
 
     private void Update()
     {
-        if (!active)
+        if (active)
+        {
+            _rectTransform.position = _position;
+            _rectTransform.localScale = _scale;
+        }
+        else
         {
             _position = _rectTransform.position;
             _scale = _rectTransform.localScale;
-            return;
         }
-
-        _rectTransform.position = _position;
-        _rectTransform.localScale = _scale;
     }
 }
