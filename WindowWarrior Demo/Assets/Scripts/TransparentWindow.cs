@@ -38,7 +38,7 @@ public class TransparentWindow : MonoBehaviour
     {
         #if !UNITY_EDITOR
         if (debug) return;
-        SetClickthrough(!eventSystem.IsPointerOverGameObject());
+        SetClickthrough(!_eventSystem.IsPointerOverGameObject());
         #endif
     }
 
